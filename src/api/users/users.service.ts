@@ -9,7 +9,6 @@ import { User } from 'src/entitys/user.entity';
 import { HttpService } from '@nestjs/axios';
 import { Inverter } from 'src/entitys/inverter.entity';
 import { Panel } from 'src/entitys/panel.entity';
-import { response } from 'express';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()

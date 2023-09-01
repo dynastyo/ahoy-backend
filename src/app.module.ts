@@ -9,6 +9,7 @@ import { UsersModule } from './api/users/users.module';
 import { User } from './entitys/user.entity';
 import { Inverter } from './entitys/inverter.entity';
 import { Panel } from './entitys/panel.entity';
+import { Hourly } from './entitys/hourly.entity';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { Panel } from './entitys/panel.entity';
       username: 'root',
       password: '',
       database: 'ahoy',
-      entities: [User, Inverter, Panel],
+      entities: [User, Inverter, Panel, Hourly],
       synchronize: true,
     }),
     ScheduleModule.forRoot(),
