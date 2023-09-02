@@ -48,6 +48,12 @@ export class DtuFetchService {
     this.dataList.push(data.ch[0][5]);
 
     // Log updated values (optional, for debugging purposes)
+    console.log('-----------');
+
+    console.log(
+      new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin' }),
+    );
+
     console.log('Max AC:', this.maxAC);
     console.log('Min AC:', this.minAC);
     console.log('temperature:', this.dataList);

@@ -6,21 +6,21 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { UsersModule } from './api/users/users.module';
-import { User } from './entitys/user.entity';
-import { Inverter } from './entitys/inverter.entity';
-import { Panel } from './entitys/panel.entity';
-import { Hourly } from './entitys/hourly.entity';
+import { ConfigModule } from '@nestjs/config';
+
+
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'ahoy',
-      entities: [User, Inverter, Panel, Hourly],
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      autoLoadEntities: true,
       synchronize: true,
     }),
     ScheduleModule.forRoot(),
