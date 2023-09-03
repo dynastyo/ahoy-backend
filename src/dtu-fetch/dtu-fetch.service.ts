@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
 import { Hourly } from 'src/entitys/hourly.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 
 @Injectable()
 export class DtuFetchService {
@@ -25,7 +25,12 @@ export class DtuFetchService {
       .get('http://ahoy-dtu.8ekgr3b06mwu94rk.myfritz.net/api/inverter/id/0')
       .subscribe({
         next: (response) => {
-          this.extractValue(response.data);
+          if (response.data !== null) this.extractValue(response.data);
+          else
+            console.log(
+              'null empfangen um: ',
+              new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin' }),
+            );
         },
         error: (err) => {
           console.error('Fehler beim Abrufen der Daten:', err);
